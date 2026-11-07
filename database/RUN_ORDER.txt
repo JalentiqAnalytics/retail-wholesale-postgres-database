@@ -1,0 +1,8 @@
+Run order (PostgreSQL 16)
+1) psql -U postgres -c "CREATE DATABASE shopdb"
+2) Quick start: psql -U postgres -d shopdb -f shop_database_FULL_DUMP.sql      (restores schema + sample data)
+   OR rebuild from the messy files:
+   psql -U postgres -d shopdb -f 01_schema.sql -f 02_views.sql
+   python3 import_data.py "<folder before_messy_excel>" "host=localhost user=postgres dbname=shopdb" import_log.json   (needs: pip install openpyxl psycopg2-binary)
+   psql -U postgres -d shopdb -f 03_validation_checks.sql
+3) psql -U postgres -d shopdb -f 04_example_queries.sql
